@@ -14,13 +14,23 @@ server.on("upgrade", onSocketUpgrade);
 
 function onSocketUpgrade(request, socket, head) {
   const { "sec-websocket-key": WebSocketKey } = request.headers;
+  console.log(`Upgrading to WebSocket connection, key: ${WebSocketKey}`);
   const header = prepareHandshakeHeader(WebSocketKey);
   console.log(header);
+  socket.write(header);
+  console.log("WebSocket connection established");
 }
 
 function prepareHandshakeHeader(id) {
   const acceptKey = createSocketAccept(id);
-  return acceptKey;
+  const header = [
+    "HTTP/1.1 101 Switching Protocols",
+    "Upgrade: websocket",
+    "Connection: Upgrade",
+    `Sec-WebSocket-Accept: ${acceptKey}`,
+    "\r\n",
+  ].join("\r\n");
+  return header;
 }
 
 function createSocketAccept(id) {
