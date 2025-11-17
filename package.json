@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "undici-types": "^7.16.0"
+  }
+}

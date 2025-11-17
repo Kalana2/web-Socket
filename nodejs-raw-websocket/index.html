@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Web Socket Client</title>
+  </head>
+  <body>
+    <output id="message"></output>
+    <script>
+      //   const socket = new WebSocket("ws://localhost:1338");
+
+      //   socket.addEventListener("open", () => {
+      //     console.log("Connected to the server");
+      //   });
+
+      //   socket.addEventListener("message", (event) => {
+      //     console.log("Message from server:", event.data);
+      //   });
+
+      //   socket.addEventListener("close", () => {
+      //     console.log("Disconnected from the server");
+      //   });
+
+      const message = document.getElementById("message");
+
+      const socket = new WebSocket("ws://localhost:1338");
+      socket.onopen = (event) => {
+        message.innerHTML += `<p>Connected to the server</p>`;
+      };
+
+      socket.onmessage = (event) => {
+        message.innerHTML += `<p>Message from server: ${event.data}</p>`;
+      };
+      socket.onerror = (error) => {
+        message.innerHTML += `<p>Error: ${error.message}</p>`;
+      };
+
+      socket.onclose = (event) => {
+        message.innerHTML += `<p>Disconnected from the server</p>`;
+      };
+    </script>
+  </body>
+</html>
