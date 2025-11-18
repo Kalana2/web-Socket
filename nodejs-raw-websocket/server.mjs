@@ -3,6 +3,12 @@ import crypto from "crypto";
 
 const PORT = 1338;
 const WEB_SOCKET_MAGIC_STRING = "258EAFA5-E914-47DA-95CA-C5AB0DC85B11";
+const SEVEN_BIT_INTIGER_MARKER = 125;
+const SIXTEEN_BIT_INTIGER_MARKER = 126;
+const SIXTYFOUR_BIT_INTIGER_MARKER = 127;
+
+// parseINT ('10000000', 2)
+const FIRST_BIT = 128;
 
 const server = createServer((request, response) => {
   response.writeHead(200);
@@ -19,6 +25,15 @@ function onSocketUpgrade(request, socket, head) {
   console.log(header);
   socket.write(header);
   console.log("WebSocket connection established");
+}
+
+function onSocketreadable(socket) {
+  // consume optcode (first byte)
+  socket.read(1); // 1 byte
+  const [markerAndPayloadLenght] = socket.read(1);
+  const lengthIndicatorInBits = markerAndPayloadLenght - FIRST_BIT; // first bit is always 1 for client-server messages
+
+  let messagesLength = 0;
 }
 
 function prepareHandshakeHeader(id) {
