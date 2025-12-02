@@ -1,0 +1,35 @@
+{
+  "name": "nodejs-raw-websocket",
+  "version": "1.0.0",
+  "description": "A from-scratch implementation of the WebSocket protocol (RFC 6455) without using any WebSocket libraries",
+  "main": "server.mjs",
+  "type": "module",
+  "scripts": {
+    "start": "node server.mjs",
+    "dev": "node --watch server.mjs",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "websocket",
+    "rfc6455",
+    "socket",
+    "real-time",
+    "tcp",
+    "protocol",
+    "educational",
+    "from-scratch"
+  ],
+  "author": "WebSocket Implementation",
+  "license": "MIT",
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/nodejs-raw-websocket"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/nodejs-raw-websocket/issues"
+  },
+  "homepage": "https://github.com/yourusername/nodejs-raw-websocket#readme"
+}
