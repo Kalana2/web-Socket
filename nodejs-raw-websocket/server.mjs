@@ -5,7 +5,7 @@
  * without using any WebSocket libraries. It demonstrates the low-level details
  * of the WebSocket handshake and frame parsing.
  *
- * @author WebSocket Implementation
+ * @author Kalana Jinendra
  * @version 1.0.0
  */
 
